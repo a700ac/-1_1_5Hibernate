@@ -4,7 +4,6 @@ import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.entity.User;
 import jm.task.core.jdbc.util.Util;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Main {
         Util util = new Util();
 
         UserDao userDaoHibernate = new UserDaoHibernateImpl();
-
+        userDaoHibernate.dropUsersTable();
         userDaoHibernate.createUsersTable();
 
         List<User> arr = new ArrayList<>();
@@ -26,7 +25,7 @@ public class Main {
             userDaoHibernate.saveUser(user.getName(), user.getLastName(), user.getAge());
             System.out.println("User с именем – " + user.getName() + " добавлен в базу данных");
         }
-      userDaoHibernate.removeUserById(1);
+      userDaoHibernate.removeUserById(1L);
       userDaoHibernate.getAllUsers();
       userDaoHibernate.cleanUsersTable();
       userDaoHibernate.dropUsersTable();
